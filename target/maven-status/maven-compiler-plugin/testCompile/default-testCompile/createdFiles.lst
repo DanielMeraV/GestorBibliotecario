@@ -1,2 +1,5 @@
 logica\ClaseEstudianteTest.class
+controladores\EliminarEstudianteServletTest.class
+controladores\RegistroEstudianteServletTest.class
 logica\ClaseLibroTest.class
+controladores\EliminarLibroServletTest.class
