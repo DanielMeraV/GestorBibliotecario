@@ -23,18 +23,23 @@ public class Administrador {
         String nombre = estudiante.getNombre();
         String telefono = estudiante.getTelefono();
         String codigo = estudiante.getCodigoUnico();
+        String direccion = estudiante.getDireccion();
+        String correo = estudiante.getCorreoElectronico();
 
-        if (cedula.length() != 10) {
+        if (cedula == "" || nombre == "" || telefono == "" || codigo =="" || direccion == "" || correo == "")  {
             return false;
-        } else if (!nombre.equals("")) {
+        }
+        else if (cedula == null || nombre == null || telefono == null || codigo ==null || direccion == null || correo == null)  {
+            return false;
+        }
+        else if (!nombre.equals("")) {
             String regex = "^[a-zA-Z]+$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(nombre);
             if (matcher.matches() == false)
                 return false;
-        } else if (telefono.length() != 10) {
-            return false;
-        } else if (codigo.length() != 9) {
+        }
+        else if (cedula.length() != 10 || telefono.length() != 10 || codigo.length() != 9) {
             return false;
         }
         return true;

@@ -1,18 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: logica.ClaseLibroTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in logica.ClaseLibroTest
-logica.ClaseLibroTest.given_many_objects_when_register_then_timeout  Time elapsed: 0 s  <<< ERROR!
+Tests run: 8, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.103 s <<< FAILURE! - in logica.ClaseLibroTest
+logica.ClaseLibroTest.given_many_objects_when_register_then_timeout  Time elapsed: 0.101 s  <<< ERROR!
 org.junit.runners.model.TestTimedOutException: test timed out after 100 milliseconds
-	at java.base@17.0.9/java.util.regex.Pattern.closure(Pattern.java:3271)
-	at java.base@17.0.9/java.util.regex.Pattern.sequence(Pattern.java:2214)
+	at java.base@17.0.9/java.util.regex.Pattern.atom(Pattern.java:2286)
+	at java.base@17.0.9/java.util.regex.Pattern.sequence(Pattern.java:2159)
 	at java.base@17.0.9/java.util.regex.Pattern.expr(Pattern.java:2069)
 	at java.base@17.0.9/java.util.regex.Pattern.compile(Pattern.java:1783)
 	at java.base@17.0.9/java.util.regex.Pattern.<init>(Pattern.java:1430)
 	at java.base@17.0.9/java.util.regex.Pattern.compile(Pattern.java:1069)
 	at java.base@17.0.9/java.util.regex.Pattern.matches(Pattern.java:1174)
 	at java.base@17.0.9/java.lang.String.matches(String.java:2846)
-	at app//logica.ClaseLibro.ingresarLibro(ClaseLibro.java:148)
+	at app//logica.ClaseLibro.ingresarLibro(ClaseLibro.java:152)
 	at app//logica.ClaseLibroTest.given_many_objects_when_register_then_timeout(ClaseLibroTest.java:100)
 	at java.base@17.0.9/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@17.0.9/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -27,7 +27,7 @@ org.junit.runners.model.TestTimedOutException: test timed out after 100 millisec
 	at java.base@17.0.9/java.util.concurrent.FutureTask.run(FutureTask.java:264)
 	at java.base@17.0.9/java.lang.Thread.run(Thread.java:842)
 
-logica.ClaseLibroTest.given_blanc_strings_when_register_then_false  Time elapsed: 0 s  <<< FAILURE!
+logica.ClaseLibroTest.given_blanc_strings_when_register_then_false  Time elapsed: 0.001 s  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -64,7 +64,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-logica.ClaseLibroTest.given_null_objects_when_register_then_exception  Time elapsed: 0 s  <<< ERROR!
+logica.ClaseLibroTest.given_null_objects_when_register_then_exception  Time elapsed: 0.001 s  <<< ERROR!
 java.lang.Exception: Unexpected exception, expected<java.lang.NullPointerException> but was<java.lang.AssertionError>
 	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:30)
 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
