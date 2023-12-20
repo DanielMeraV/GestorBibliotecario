@@ -13,15 +13,19 @@
     <h1>Gestor Bibliotecario</h1>
 
     <div class="section">
-        <h2>Registrar Estudiante</h2>
+        <h2>Estudiante</h2>
         <p class="description">En esta sección se puede ingresar un nuevo estudiante al sistema de la biblioteca.</p>
         <button class="btn" onclick="window.location.href='registrarEstudiante.jsp'">Registrar</button>
+        <p class="description">En esta sección se puede eliminar un estudiante del sistema de la biblioteca.</p>
+        <button class="btn" onclick="window.location.href='eliminarEstudiante.jsp'">Eliminar</button>
     </div>
 
     <div class="section">
-        <h2>Registrar Libro</h2>
+        <h2>Libro</h2>
         <p class="description">En esta sección se puede ingresar un nuevo libro al sistema de la biblioteca.</p>
         <button class="btn" onclick="window.location.href='registrarLibro.jsp'">Registrar</button>
+        <p class="description">En esta sección se puede eliminar un libro del sistema de la biblioteca.</p>
+        <button class="btn" onclick="window.location.href='eliminarLibro.jsp'">Eliminar</button>
     </div>
 
     <div class="section">

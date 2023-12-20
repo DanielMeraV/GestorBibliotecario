@@ -131,10 +131,14 @@ public class ClaseLibro {
     }
 
     public static ClaseLibro getLibro(String idlibro, Session session) {
-        Query<ClaseLibro> libroQuery = session.createQuery ("FROM ClaseLibro WHERE idLibro = :idLibro", ClaseLibro.class);
-        libroQuery.setParameter("idLibro", idlibro);
-        ClaseLibro libro = libroQuery.uniqueResult();
-        return libro;
+        try {
+            Query<ClaseLibro> libroQuery = session.createQuery ("FROM ClaseLibro WHERE idLibro = :idLibro", ClaseLibro.class);
+            libroQuery.setParameter("idLibro", idlibro);
+            ClaseLibro libro = libroQuery.uniqueResult();
+            return libro;
+        }catch (Exception e) {
+            return null;
+        }
     }
 
     public static boolean ingresarLibro(ClaseLibro libro){

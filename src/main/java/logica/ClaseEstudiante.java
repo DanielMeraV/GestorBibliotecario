@@ -88,11 +88,15 @@ public class ClaseEstudiante {
     }
 
 
-    static ClaseEstudiante getEstudiante(String cedula, Session session) {
-        Query<ClaseEstudiante> estudianteQuery = session.createQuery ("FROM ClaseEstudiante WHERE cedula = :cedula", ClaseEstudiante.class);
-        estudianteQuery.setParameter("cedula", cedula);
-        ClaseEstudiante estudiante = estudianteQuery.uniqueResult();
-        return estudiante;
+    public static ClaseEstudiante getEstudiante(String cedula, Session session) {
+        try {
+            Query<ClaseEstudiante> estudianteQuery = session.createQuery ("FROM ClaseEstudiante WHERE cedula = :cedula", ClaseEstudiante.class);
+            estudianteQuery.setParameter("cedula", cedula);
+            ClaseEstudiante estudiante = estudianteQuery.uniqueResult();
+            return estudiante;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }
