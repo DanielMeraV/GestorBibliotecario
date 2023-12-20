@@ -1,0 +1,9 @@
+logica\ClaseLibro.class
+logica\ClasePrestamo.class
+controladores\RegistroEstudianteServlet.class
+controladores\SolicitarPrestamoServlet.class
+logica\ClaseEstudiante.class
+logica\Administrador.class
+controladores\EliminarEstudianteServlet.class
+controladores\EliminarLibroServlet.class
+controladores\RegistroLibroServlet.class
