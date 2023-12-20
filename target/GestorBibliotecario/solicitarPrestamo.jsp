@@ -22,10 +22,10 @@
             <caption>Estudiantes</caption>
             <thead>
             <tr>
-                <th>Cedula</th>
+                <th>Cédula</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
                 <th>Codigo Unico</th>
                 <th>Correo Electrónico</th>
             </tr>
@@ -117,7 +117,7 @@
 
     <table class="loans-table">
         <!-- Tabla de Préstamos -->
-        <caption>Prestamos</caption>
+        <caption>Préstamos</caption>
         <thead>
         <tr>
             <th>Cédula Estudiante</th>
