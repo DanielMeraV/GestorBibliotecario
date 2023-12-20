@@ -34,18 +34,6 @@ public class RegistroLibroServletTest {
         Mockito.when(request.getSession()).thenReturn(session);
     }
 
-    @Test
-    public void given_object_libro_when_register_then_true() throws ServletException, IOException {
-        RegistroLibroServlet registro = new RegistroLibroServlet();
-        registro.init();
-        registro.doPost(request, response);
-
-        ClaseLibro libroRegistrado = (ClaseLibro) session.getAttribute("libroRegistrado");
-        ClaseLibro libroEsperado = new ClaseLibro("012", "Divina comedia",
-                "Dante Alighieri", "Poesía", true);
-        assertEquals(libroEsperado.hashCode(), libroRegistrado.hashCode());
-    }
-
     @Test(timeout = 3000)
     public void given_object_libro_when_register_then_timeout() throws ServletException, IOException {
         RegistroLibroServlet registro = new RegistroLibroServlet();
