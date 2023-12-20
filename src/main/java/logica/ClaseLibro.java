@@ -152,7 +152,6 @@ public class ClaseLibro {
         } else if (!libro.getIdLibro().matches("\\d+")) {
             valido = false;
         }
-
         return valido;
     }
 

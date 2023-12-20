@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: controladores.RegistroLibroServletTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 4.653 s <<< FAILURE! - in controladores.RegistroLibroServletTest
-controladores.RegistroLibroServletTest.given_object_libro_when_register_then_true  Time elapsed: 3.275 s  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.946 s <<< FAILURE! - in controladores.RegistroLibroServletTest
+controladores.RegistroLibroServletTest.given_object_libro_when_register_then_true  Time elapsed: 1.392 s  <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "logica.ClaseLibro.hashCode()" because "libroRegistrado" is null
 	at controladores.RegistroLibroServletTest.given_object_libro_when_register_then_true(RegistroLibroServletTest.java:46)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

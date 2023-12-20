@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/registrarLibro.css">
     <title>Registro de Libros</title>
+    <script>
+        function validarNumero(input) {
+            var regex = /[^0-9]/g;
+            input.value = input.value.replace(regex, '');
+            if (input.value.length === 0) {
+                document.getElementById('mensaje').innerHTML = "Ingresa al menos un número.";
+            } else {
+                document.getElementById('mensaje').innerHTML = "";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -17,7 +28,7 @@
 
     <form action="registroLibro" method="post">
         <label for="idLibro">ID libro:</label>
-        <input type="text" id="idLibro" name="idLibro">
+        <input type="text" id="idLibro" name="idLibro" oninput="validarNumero(this)">
 
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" name="titulo">
