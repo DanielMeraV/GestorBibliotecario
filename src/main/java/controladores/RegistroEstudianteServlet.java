@@ -37,6 +37,7 @@ public class RegistroEstudianteServlet extends HttpServlet {
 
         if (estudiante != null){
             session.setAttribute("errorMensaje", null);
+            session.setAttribute("estudianteRegistrado", estudiante);
             // Guardar el estudiante utilizando Hibernate
             try (Session sessionSave = sessionFactory.openSession()) {
                 sessionSave.beginTransaction();

@@ -37,9 +37,8 @@ public class EliminarLibroServlet extends HttpServlet {
                 sessionSave.delete(libro);
                 sessionSave.getTransaction().commit();
             } catch (Exception e) {
-                e.printStackTrace();
-                // Manejar el error, por ejemplo, redirigir a una página de error
-                response.sendRedirect("error.jsp");
+                session.setAttribute("errorMensaje", "Error: no puede eliminar un libro con un prestamo pendiente.");
+                response.sendRedirect("eliminarLibro.jsp");
                 return;
             }
             // Redireccionar a una página de éxito después de guardar en la base de datos

@@ -4,10 +4,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import logica.ClaseEstudiante;
 import logica.ClaseLibro;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-public class RegistroLibroServletTest {
+public class EliminarEstudianteServletTest {
 
     private static HttpServletRequest request;
     private static HttpServletResponse response;
@@ -32,20 +32,31 @@ public class RegistroLibroServletTest {
         sessionsave = Mockito.mock(Session.class);
         sessionFactory = Mockito.mock(SessionFactory.class);
 
-        Mockito.when(request.getParameter("idLibro")).thenReturn("012");
-        Mockito.when(request.getParameter("titulo")).thenReturn("Divina comedia");
-        Mockito.when(request.getParameter("autor")).thenReturn("Dante Alighieri");
-        Mockito.when(request.getParameter("genero")).thenReturn("Poesía");
-        Mockito.when(request.getParameter("disponibilidad")).thenReturn("disponible");
+        Mockito.when(request.getParameter("cedula")).thenReturn("1234567890");
+        Mockito.when(request.getParameter("nombre")).thenReturn("Daniel");
+        Mockito.when(request.getParameter("direccion")).thenReturn("La Florida");
+        Mockito.when(request.getParameter("telefono")).thenReturn("0999384473");
+        Mockito.when(request.getParameter("codigo")).thenReturn("202010586");
+        Mockito.when(request.getParameter("correo")).thenReturn("daniel.mera@epn.edu.ec");
         Mockito.when(request.getSession()).thenReturn(session);
         Mockito.when(sessionFactory.openSession()).thenReturn(sessionsave);
     }
 
-    @Test(timeout = 3000)
-    public void given_object_libro_when_register_then_timeout() throws ServletException, IOException {
-        RegistroLibroServlet registro = new RegistroLibroServlet();
+    @Test
+    public void given_student_when_delete_then_ok() throws ServletException, IOException {
+        sessionsave = sessionFactory.openSession();
+
+        RegistroEstudianteServlet registro = new RegistroEstudianteServlet();
         registro.init();
         registro.doPost(request, response);
+
+        EliminarEstudianteServlet eliminarRegistro = new EliminarEstudianteServlet();
+        eliminarRegistro.init();
+        eliminarRegistro.doPost(request, response);
+
+        ClaseEstudiante estudianteEliminado = ClaseEstudiante.getEstudiante("1234567890", sessionsave);
+
+        assertNull(estudianteEliminado);
     }
 
 }

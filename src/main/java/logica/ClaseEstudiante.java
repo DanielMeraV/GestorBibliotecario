@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "estudiante", schema = "gestorbibliotecario")
 public class ClaseEstudiante {
@@ -99,4 +101,8 @@ public class ClaseEstudiante {
         }
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(cedula, nombre, direccion, telefono, codigoUnico, correoElectronico);
+    }
 }
