@@ -26,7 +26,7 @@
     <h1>Registrar Libro</h1>
     <p>Ingrese los datos del libro:</p>
 
-    <form action="registroLibro" method="post">
+    <form action="libro" method="post">
         <label for="idLibro">ID libro:</label>
         <input type="text" id="idLibro" name="idLibro" oninput="validarNumero(this)">
 
@@ -51,7 +51,7 @@
         <br>
 
         <div class="botones">
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="registroLibro">Aceptar</button>
             <button type="button" class="cancelar" onclick="window.location.href='index.jsp'">Cancelar</button>
         </div>
     </form>

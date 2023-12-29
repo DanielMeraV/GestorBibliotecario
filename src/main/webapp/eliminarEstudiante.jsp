@@ -15,12 +15,12 @@
     <h1>Eliminar Estudiante</h1>
     <p>Ingrese la cédula del estudiante a eliminar:</p>
 
-    <form action="eliminarEstudiante" method="post">
+    <form action="estudiante" method="post">
         <label for="cedula">Cédula:</label>
         <input type="text" id="cedula" name="cedula">
 
         <div class="botones">
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="eliminarEstudiante">Aceptar</button>
             <button type="button" class="cancelar" onclick="window.location.href='index.jsp'">Cancelar</button>
         </div>
     </form>

@@ -26,7 +26,7 @@
     <h1>Registrar Estudiante</h1>
     <p>Ingrese los datos del estudiante:</p>
 
-    <form action="registroEstudiante" method="post"> <!-- El formulario envía datos al servlet 'registroEstudiante' -->
+    <form action="estudiante" method="post"> <!-- El formulario envía datos al servlet 'registroEstudiante' -->
         <label for="cedula">Cédula*:</label>
         <input type="text" id="cedula" name="cedula" oninput="validarNumero(this)" required>
 
@@ -46,7 +46,7 @@
         <input type="email" id="correo" name="correo" required>
 
         <div class="botones">
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="registroEstudiante">Aceptar</button>
             <button type="button" class="cancelar" onclick="window.location.href='index.jsp'">Cancelar</button>
         </div>
     </form>
