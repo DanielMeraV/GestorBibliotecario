@@ -16,7 +16,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-public class EliminarEstudianteServletTest {
+public class EstudianteServletTest {
 
     private static HttpServletRequest request;
     private static HttpServletResponse response;
@@ -29,8 +29,6 @@ public class EliminarEstudianteServletTest {
         request = Mockito.mock(HttpServletRequest.class);
         response = Mockito.mock(HttpServletResponse.class);
         session = Mockito.mock(HttpSession.class);
-        sessionsave = Mockito.mock(Session.class);
-        sessionFactory = Mockito.mock(SessionFactory.class);
 
         Mockito.when(request.getParameter("cedula")).thenReturn("1234567890");
         Mockito.when(request.getParameter("nombre")).thenReturn("Daniel");
@@ -42,15 +40,24 @@ public class EliminarEstudianteServletTest {
         Mockito.when(sessionFactory.openSession()).thenReturn(sessionsave);
     }
 
+    @Test(timeout = 3000)
+    public void given_ostudent_when_register_then_timeout() throws ServletException, IOException {
+        EstudianteServlet registro = new EstudianteServlet();
+        registro.init();
+        registro.doPost(request, response);
+    }
+
     @Test
     public void given_student_when_delete_then_ok() throws ServletException, IOException {
         sessionsave = sessionFactory.openSession();
 
-        RegistroEstudianteServlet registro = new RegistroEstudianteServlet();
+        EstudianteServlet registro = new EstudianteServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("registroEstudiante");
         registro.init();
         registro.doPost(request, response);
 
-        EliminarEstudianteServlet eliminarRegistro = new EliminarEstudianteServlet();
+        EstudianteServlet eliminarRegistro = new EstudianteServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("eliminarEstudiante");
         eliminarRegistro.init();
         eliminarRegistro.doPost(request, response);
 

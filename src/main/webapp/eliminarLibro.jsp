@@ -15,12 +15,12 @@
     <h1>Eliminar Libro</h1>
     <p>Ingrese el ID del libro a eliminar:</p>
 
-    <form action="eliminarLibro" method="post">
+    <form action="libro" method="post">
         <label for="idLibro">ID del libro:</label>
         <input type="text" id="idLibro" name="idLibro">
 
         <div class="botones">
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="eliminarLibro">Aceptar</button>
             <button type="button" class="cancelar" onclick="window.location.href='index.jsp'">Cancelar</button>
         </div>
     </form>

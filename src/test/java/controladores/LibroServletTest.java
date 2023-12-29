@@ -4,7 +4,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.ClaseEstudiante;
 import logica.ClaseLibro;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,7 +15,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-public class EliminarLibroServletTest {
+public class LibroServletTest {
 
     private static HttpServletRequest request;
     private static HttpServletResponse response;
@@ -45,11 +44,13 @@ public class EliminarLibroServletTest {
     public void given_book_when_delete_then_ok() throws ServletException, IOException {
         sessionsave = sessionFactory.openSession();
 
-        RegistroLibroServlet registro = new RegistroLibroServlet();
+        LibroServlet registro = new LibroServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("registroLibro");
         registro.init();
         registro.doPost(request, response);
 
-        EliminarLibroServlet eliminarRegistro = new EliminarLibroServlet();
+        LibroServlet eliminarRegistro = new LibroServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("eliminarLibro");
         eliminarRegistro.init();
         eliminarRegistro.doPost(request, response);
 
