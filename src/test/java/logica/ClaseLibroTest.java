@@ -1,6 +1,5 @@
 package logica;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,7 +20,7 @@ public class ClaseLibroTest {
         libro = new ClaseLibro("012", "Divina comedia",
                 "Dante Alighieri", "Poesía", true);
 
-        assertTrue(ClaseLibro.ingresarLibro(libro));
+        assertTrue(ClaseLibro.validarDatosLibro(libro));
     }
 
     @Test(timeout = 10)
@@ -30,7 +29,7 @@ public class ClaseLibroTest {
         libro = new ClaseLibro("012", "Divina comedia",
                 "Dante Alighieri", "Poesía", true);
 
-        assertTrue(ClaseLibro.ingresarLibro(libro));
+        assertTrue(ClaseLibro.validarDatosLibro(libro));
     }
 
     @Test
@@ -39,7 +38,7 @@ public class ClaseLibroTest {
         libro = new ClaseLibro(null, null,
                 "Dante Alighieri", "Poesía", true);
 
-        assertFalse(ClaseLibro.ingresarLibro(libro));
+        assertFalse(ClaseLibro.validarDatosLibro(libro));
     }
 
     @Test
@@ -48,7 +47,7 @@ public class ClaseLibroTest {
         libro = new ClaseLibro("abc", "Divina comedia",
                 "Dante Alighieri", "Poesía", true);
 
-        assertFalse(ClaseLibro.ingresarLibro(libro));
+        assertFalse(ClaseLibro.validarDatosLibro(libro));
     }
 
     @Test
@@ -80,7 +79,7 @@ public class ClaseLibroTest {
         for (int i = 0; i < numberOfObjects; i++) {
             libro = new ClaseLibro("012", "Divina comedia",
                     "Dante Alighieri", "Poesía", true);
-            assertTrue(ClaseLibro.ingresarLibro(libro));
+            assertTrue(ClaseLibro.validarDatosLibro(libro));
         }
     }
 

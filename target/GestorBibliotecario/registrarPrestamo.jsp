@@ -68,7 +68,6 @@
             <tbody>
             <%
                 List<ClaseLibro> listaLibros = (List) request.getSession().getAttribute("listaLibros");
-                listaLibros = ClaseLibro.verificarLibrosDisponibles(listaLibros);
                 String disponibilidad;
                 for (ClaseLibro libro : listaLibros) {
                     disponibilidad = libro.getDisponibilidad() ? "Si" : "No";
@@ -97,14 +96,14 @@
     </tr>
 
     <div class="formulario">
-        <form action="solicitarPrestamo" method="post">
+        <form action="prestamo" method="post">
             <label for="cedula">Cédula del estudiante:</label>
             <input type="text" id="cedula" name="cedula" placeholder="Ingrese la cédula aquí">
 
             <label for="idLibro">&nbsp;&nbsp;&nbsp;ID del libro:</label>
             <input type="text" id="idLibro" name="idLibro" placeholder="Ingrese el ID aquí">
 
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="registrarPrestamo">Aceptar</button>
         </form>
     </div>
 

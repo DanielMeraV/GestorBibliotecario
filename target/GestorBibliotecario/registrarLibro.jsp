@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/registrarLibro.css">
-    <title>Registro de Libros</title>
+    <title>Registrar Libro</title>
     <script>
         function validarNumero(input) {
             var regex = /[^0-9]/g;
@@ -26,18 +26,18 @@
     <h1>Registrar Libro</h1>
     <p>Ingrese los datos del libro:</p>
 
-    <form action="registroLibro" method="post">
+    <form action="libro" method="post">
         <label for="idLibro">ID libro:</label>
-        <input type="text" id="idLibro" name="idLibro" oninput="validarNumero(this)">
+        <input type="text" id="idLibro" name="idLibro" oninput="validarNumero(this)" maxlength="3" required>
 
         <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo">
+        <input type="text" id="titulo" name="titulo" required>
 
         <label for="autor">Autor:</label>
-        <input type="text" id="autor" name="autor">
+        <input type="text" id="autor" name="autor" required>
 
         <label for="genero">Género:</label>
-        <input type="text" id="genero" name="genero">
+        <input type="text" id="genero" name="genero" required>
 
         <label>Disponibilidad:</label>
         <div class="radio-container">
@@ -51,7 +51,7 @@
         <br>
 
         <div class="botones">
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="registrarLibro">Aceptar</button>
             <button type="button" class="cancelar" onclick="window.location.href='index.jsp'">Cancelar</button>
         </div>
     </form>
