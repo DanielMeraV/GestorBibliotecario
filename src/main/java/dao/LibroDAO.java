@@ -44,6 +44,19 @@ public class LibroDAO {
         }
     }
 
+    public static boolean verificarExistenciaLibro(String idLibro) {
+        try (Session sessionSave = sessionFactory.openSession()) {
+            Query<ClaseLibro> libroQuery = sessionSave.createQuery("FROM ClaseLibro WHERE idLibro = :idLibro", ClaseLibro.class);
+            libroQuery.setParameter("idLibro", idLibro);
+
+            return libroQuery.uniqueResult() != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+
     public static List<ClaseLibro> listarLibros() {
         try (Session sessionSave = sessionFactory.openSession()){
             return sessionSave.createQuery("FROM ClaseLibro ", ClaseLibro.class).getResultList();
