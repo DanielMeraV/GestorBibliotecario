@@ -30,7 +30,7 @@ public class LibroDAO {
     public static boolean eliminarLibro(String idLibro){
         try (Session sessionSave = sessionFactory.openSession()) {
 
-            ClaseLibro libro = verificarExistenciaLibro(idLibro);
+            ClaseLibro libro = consultarLibro(idLibro);
 
             sessionSave.beginTransaction();
             sessionSave.delete(libro);
@@ -73,7 +73,7 @@ public class LibroDAO {
         }
     }
 
-    public static ClaseLibro verificarExistenciaLibro(String idlibro) {
+    public static ClaseLibro consultarLibro(String idlibro) {
         try (Session sessionSave = sessionFactory.openSession()) {
             Query<ClaseLibro> libroQuery = sessionSave.createQuery ("FROM ClaseLibro WHERE idLibro = :idLibro", ClaseLibro.class);
             libroQuery.setParameter("idLibro", idlibro);
@@ -88,7 +88,7 @@ public class LibroDAO {
 
             sessionSave.beginTransaction();
 
-            ClaseLibro libro = verificarExistenciaLibro(idlibro);
+            ClaseLibro libro = consultarLibro(idlibro);
 
             int actualizacion = sessionSave.createQuery("UPDATE ClaseLibro SET disponibilidad = :nuevaDisponibilidad WHERE idLibro = :idLibro").setParameter("nuevaDisponibilidad", !libro.getDisponibilidad()).setParameter("idLibro", idlibro).executeUpdate();
 
