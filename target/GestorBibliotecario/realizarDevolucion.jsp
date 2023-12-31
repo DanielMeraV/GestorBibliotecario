@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <h1>Devolución de un libro</h1>
-    <p>Seleccione el id del préstamo del que deseea realizar la devolución. </p>
+    <p>Seleccione el id del préstamo del que desea realizar la devolución. </p>
 
     <div class="tables-container">
         <table class="loans-table">

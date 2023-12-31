@@ -28,10 +28,12 @@ public class PrestamoServlet extends HttpServlet {
         switch (action) {
             case "registrarPrestamo":{
                 actualizarTablas(request, response);
+                response.sendRedirect("registrarPrestamo.jsp");
                 break;
             }
             case "renovarPrestamo": {
                 actualizarTablas(request, response);
+                response.sendRedirect("renovarPrestamo.jsp");
                 break;
             }
         }
@@ -59,17 +61,22 @@ public class PrestamoServlet extends HttpServlet {
             HttpSession session = request.getSession();
             String idPrestamoStr = request.getParameter("idPrestamo");
             String nuevaFechaStr = request.getParameter("nuevaFecha");
+
             if (idPrestamoStr != null && nuevaFechaStr != null && !idPrestamoStr.isEmpty() && !nuevaFechaStr.isEmpty()) {
                 int idPrestamo = Integer.parseInt(idPrestamoStr);
                 Date nuevaFechaDevolucion = Date.valueOf(LocalDate.parse(nuevaFechaStr));
+
                 if (PrestamoDAO.renovarPrestamo(idPrestamo, nuevaFechaDevolucion)) {
-                    response.sendRedirect("renovarPrestamo.jsp");
+                    response.sendRedirect("index.jsp");
                 } else {
                     session.setAttribute("errorMensaje", "Error:  La renovación no fue exitosa");
+                    response.sendRedirect("renovarPrestamo.jsp");
                 }
             } else {
                 session.setAttribute("errorMensaje", "Error:  Parámetros inválidos o faltantes");
+                response.sendRedirect("renovarPrestamo.jsp");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,6 +124,5 @@ public class PrestamoServlet extends HttpServlet {
         sesion.setAttribute("listaEstudiantes", EstudianteDAO.listarEstudiantes());
         sesion.setAttribute("listaLibros", LibroDAO.listarLibrosDisponibles());
         sesion.setAttribute("listaPrestamos", PrestamoDAO.listarPrestamos());
-        response.sendRedirect("registrarPrestamo.jsp");
     }
 }

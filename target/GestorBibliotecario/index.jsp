@@ -32,7 +32,7 @@
         <form action="prestamo" method="get">
             <h2>Solicitud de Préstamo</h2>
             <p class="description">En esta sección se puede realizar un nuevo prestamo de un libro por estudiante.</p>
-            <button class="btn" onclick="window.location.href='registrarPrestamo.jsp'" name="action" value="registrarPrestamo">Solicitar</button>
+            <button class="btn" onclick="window.location.href='registrarPrestamo.jsp'">Solicitar</button>
         </form>
     </div>
 
@@ -41,6 +41,14 @@
             <h2>Devolución de un libro</h2>
             <p class="description">En esta sección se puede realizar la devolución de un libro prestado a un estudiante.</p>
             <button class="btn" onclick="window.location.href='realizarDevolucion.jsp'" name="action" value="realizarDevolucion">Registrar</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <form action="prestamo" method="get">
+            <h2>Renovar un préstamo</h2>
+            <p class="description">En esta sección se puede realizar la renovación de un préstamo.</p>
+            <button class="btn" onclick="window.location.href='renovarPrestamo.jsp'" name="action" value="renovarPrestamo">Renovar</button>
         </form>
     </div>
 </div>

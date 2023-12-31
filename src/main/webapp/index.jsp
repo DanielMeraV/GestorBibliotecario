@@ -13,29 +13,41 @@
     <h1>Gestor Bibliotecario</h1>
 
     <div class="section">
-        <h2>Registrar Estudiante</h2>
+        <h2>Estudiante</h2>
         <p class="description">En esta sección se puede ingresar un nuevo estudiante al sistema de la biblioteca.</p>
         <button class="btn" onclick="window.location.href='registrarEstudiante.jsp'">Registrar</button>
+        <p class="description">En esta sección se puede eliminar un estudiante del sistema de la biblioteca.</p>
+        <button class="btn" onclick="window.location.href='eliminarEstudiante.jsp'">Eliminar</button>
     </div>
 
     <div class="section">
-        <h2>Registrar Libro</h2>
+        <h2>Libro</h2>
         <p class="description">En esta sección se puede ingresar un nuevo libro al sistema de la biblioteca.</p>
         <button class="btn" onclick="window.location.href='registrarLibro.jsp'">Registrar</button>
+        <p class="description">En esta sección se puede eliminar un libro del sistema de la biblioteca.</p>
+        <button class="btn" onclick="window.location.href='eliminarLibro.jsp'">Eliminar</button>
     </div>
 
     <div class="section">
-        <form action="solicitarPrestamo" method="get">
+        <form action="prestamo" method="get">
             <h2>Solicitud de Préstamo</h2>
             <p class="description">En esta sección se puede realizar un nuevo prestamo de un libro por estudiante.</p>
-            <button class="btn" onclick="window.location.href='solicitarPrestamo.jsp'">Solicitar</button>
+            <button class="btn" onclick="window.location.href='registrarPrestamo.jsp'">Solicitar</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <form action="devolucion" method="get">
+            <h2>Devolución de un libro</h2>
+            <p class="description">En esta sección se puede realizar la devolución de un libro prestado a un estudiante.</p>
+            <button class="btn" onclick="window.location.href='realizarDevolucion.jsp'" name="action" value="realizarDevolucion">Registrar</button>
         </form>
     </div>
 
     <div class="section">
         <form action="prestamo" method="get">
             <h2>Renovar un préstamo</h2>
-            <p class="description">En esta sección se puede realizar la renovación de una fecha de devolucion de un libro.</p>
+            <p class="description">En esta sección se puede realizar la renovación de un préstamo.</p>
             <button class="btn" onclick="window.location.href='renovarPrestamo.jsp'" name="action" value="renovarPrestamo">Renovar</button>
         </form>
     </div>
