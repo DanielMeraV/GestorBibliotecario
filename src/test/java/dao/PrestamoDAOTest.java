@@ -38,8 +38,29 @@ public class PrestamoDAOTest {
     }
 
     @Test
-    public void given_nonExistingPrestamo_when_delete_then_handleException() {
-        assertThrows(IllegalArgumentException.class, () -> {PrestamoDAO.eliminarPrestamo(99);});
+    public void given_nonExistingPrestamo_when_delete_then_false() {
+        assertFalse(PrestamoDAO.eliminarPrestamo(100));
+    }
+
+
+    @Test
+    public void given_existentPrestamo_when_renew_then_true() {
+        assertTrue(PrestamoDAO.renovarPrestamo(12, Date.valueOf(LocalDate.now().plusDays(100))));
+    }
+
+    @Test
+    public void given_expiredPrestamo_when_renew_then_false() {
+        assertFalse(PrestamoDAO.renovarPrestamo(12, Date.valueOf(LocalDate.now().plusDays(100))));
+    }
+
+    @Test
+    public void given_existentPrestamo_when_renew_with_invalidDate_then_false(){
+        assertFalse(PrestamoDAO.renovarPrestamo(12, Date.valueOf(LocalDate.now().minusDays(100))));
+    }
+
+    @Test
+    public void given_nonExistentPrestamo_when_renew_then_false() {
+        assertFalse(PrestamoDAO.renovarPrestamo(100, Date.valueOf(LocalDate.now().plusDays(15))));
     }
 
 }

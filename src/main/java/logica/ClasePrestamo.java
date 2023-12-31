@@ -92,4 +92,15 @@ public class ClasePrestamo {
     public void setMulta(Boolean multa) {
         this.multa = multa;
     }
+
+    public static int compararFechas(Date fecha1, Date fecha2){
+        if(fecha1.equals(fecha2)){
+            return 0;
+        }else if(fecha1.after(fecha2)){
+            return 1;
+        }else if(fecha1.before(fecha2)){
+            return -1;
+        }
+        return 0;
+    }
 }

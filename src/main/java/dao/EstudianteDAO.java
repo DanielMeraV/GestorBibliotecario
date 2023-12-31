@@ -43,6 +43,19 @@ public class EstudianteDAO {
         }
     }
 
+    public static boolean verificarExistenciaEstudiante(String cedula) {
+        try (Session sessionSave = sessionFactory.openSession()) {
+            Query<ClaseEstudiante> estudianteQuery = sessionSave.createQuery("FROM ClaseEstudiante WHERE cedula = :cedula", ClaseEstudiante.class);
+            estudianteQuery.setParameter("cedula", cedula);
+
+            return estudianteQuery.uniqueResult() != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+
     public static List<ClaseEstudiante> listarEstudiantes() {
         try (Session sessionSave = sessionFactory.openSession()){
             return sessionSave.createQuery("FROM ClaseEstudiante ", ClaseEstudiante.class).getResultList();

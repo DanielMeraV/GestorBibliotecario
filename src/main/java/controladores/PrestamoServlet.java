@@ -11,12 +11,7 @@ import jakarta.servlet.annotation.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import logica.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 @WebServlet(name = "PrestamoServlet", urlPatterns = {"/prestamo"})
 public class PrestamoServlet extends HttpServlet {
