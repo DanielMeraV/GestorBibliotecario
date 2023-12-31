@@ -29,7 +29,7 @@ public class EstudianteDAO {
     public static boolean eliminarEstudiante(String cedula){
         try (Session sessionSave = sessionFactory.openSession()) {
 
-            ClaseEstudiante estudiante = verificarExistenciaLibro(cedula);
+            ClaseEstudiante estudiante = consultarEstudiante(cedula);
 
             sessionSave.beginTransaction();
             sessionSave.delete(estudiante);
@@ -53,7 +53,7 @@ public class EstudianteDAO {
         }
     }
 
-    public static ClaseEstudiante verificarExistenciaLibro(String cedula) {
+    public static ClaseEstudiante consultarEstudiante(String cedula) {
         try {
             Query<ClaseEstudiante> estudianteQuery = sessionFactory.openSession().createQuery ("FROM ClaseEstudiante WHERE cedula = :cedula", ClaseEstudiante.class);
             estudianteQuery.setParameter("cedula", cedula);
