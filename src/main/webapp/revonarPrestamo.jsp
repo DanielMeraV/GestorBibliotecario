@@ -8,13 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/solicitarPrestamo.css">
-    <title>Devolución de un libro</title>
+    <title>Renovar un préstamo</title>
 </head>
 
 <body>
 <div class="container">
-    <h1>Devolución de un libro</h1>
-    <p>Seleccione el id del préstamo del que desea realizar la devolución. </p>
+    <h1>Renovar un préstamo</h1>
+    <p>Seleccione el id del préstamo del que desea renovar.</p>
 
     <div class="tables-container">
         <table class="loans-table">
@@ -59,11 +59,14 @@
     </tr>
 
     <div class="formulario">
-        <form action="devolucion" method="post">
+        <form action="prestamo" method="post">
             <label for="idPrestamo">ID del préstamo:</label>
             <input type="text" id="idPrestamo" name="idPrestamo" placeholder="Ingrese el ID del préstamo aquí">
 
-            <button type="submit" name="action" value="realizarDevolucion">Aceptar</button>
+            <label for="nuevaFecha">&nbsp;&nbsp;&nbsp;Nueva fecha:</label>
+            <input type="date" id="nuevaFecha" name="nuevaFecha" placeholder="Ingrese la nueva fecha aquí">
+
+            <button type="submit" name="action" value="renovarPrestamo">Actualizar</button>
         </form>
     </div>
 
@@ -74,45 +77,12 @@
     </div>
     <% } %>
 
-
-    <table class="loans-table">
-        <caption>Devoluciones</caption>
-        <thead>
-        <tr>
-            <th>ID Devolución</th>
-            <th>ID Préstamo</th>
-            <th>Cédula Estudiante</th>
-            <th>Fecha Devolución</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-            //List<ClaseEstudiante> listaEstudiantes = (List) request.getSession().getAttribute("listaEstudiantes");
-            //for (ClaseEstudiante estudiante : listaEstudiantes) {
-        %>
-        <tr>
-            <td><%//=estudiante.getCedula()%>
-            </td>
-            <td><%//=estudiante.getNombre()%>
-            </td>
-            <td><%//=estudiante.getDireccion()%>
-            </td>
-            <td><%//=estudiante.getTelefono()%>
-            </td>
-            <td><%//=estudiante.getCodigoUnico()%>
-            </td>
-            <td><%//=estudiante.getCorreoElectronico()%>
-            </td>
-        </tr>
-        <%// }%>
-        </tbody>
-    </table>
-
     <p></p>
 
     <div class="buttons-container">
         <button type="button" class="return-button" onclick="window.location.href='index.jsp'">Regresar</button>
     </div>
 </div>
+
 </body>
 </html>
