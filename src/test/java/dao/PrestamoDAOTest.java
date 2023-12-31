@@ -34,7 +34,7 @@ public class PrestamoDAOTest {
 
     @Test
     public void given_object_prestamo_when_delete_then_true(){
-            assertTrue(PrestamoDAO.eliminarPrestamo(11));
+        assertTrue(PrestamoDAO.eliminarPrestamo(11));
     }
 
     @Test
