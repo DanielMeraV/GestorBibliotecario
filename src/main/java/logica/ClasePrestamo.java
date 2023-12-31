@@ -92,6 +92,7 @@ public class ClasePrestamo {
         this.multa = multa;
     }
 
+<<<<<<< Updated upstream
     public static boolean solicitarPrestamo(String cedula, String idlibro){
         sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         Session session = null;
@@ -131,6 +132,17 @@ public class ClasePrestamo {
             if (session != null) {
                 session.close();
             }
+=======
+
+
+    public static int compararFechas(Date fecha1, Date fecha2){
+        if(fecha1.equals(fecha2)){
+            return 0;
+        }else if(fecha1.after(fecha2)){
+            return 1;
+        }else if(fecha1.before(fecha2)){
+            return -1;
+>>>>>>> Stashed changes
         }
     }
 
