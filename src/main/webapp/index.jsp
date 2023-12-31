@@ -27,6 +27,7 @@
         <p class="description">En esta sección se puede eliminar un libro del sistema de la biblioteca.</p>
         <button class="btn" onclick="window.location.href='eliminarLibro.jsp'">Eliminar</button>
     </div>
+<<<<<<< HEAD
 
     <div class="section">
         <form action="prestamo" method="get">
@@ -43,6 +44,8 @@
             <button class="btn" onclick="window.location.href='realizarDevolucion.jsp'" name="action" value="realizarDevolucion">Registrar</button>
         </form>
     </div>
+=======
+>>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
 </div>
 
 </body>
