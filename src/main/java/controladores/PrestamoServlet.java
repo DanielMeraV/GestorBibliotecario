@@ -18,7 +18,7 @@ public class PrestamoServlet extends HttpServlet {
 
     @Override
     public void init() {
-
+        PrestamoDAO.actualizarMultas();
     }
 
     @Override
@@ -27,6 +27,10 @@ public class PrestamoServlet extends HttpServlet {
 
         switch (action) {
             case "registrarPrestamo":{
+                actualizarTablas(request, response);
+                break;
+            }
+            case "renovarPrestamo": {
                 actualizarTablas(request, response);
                 break;
             }
@@ -42,7 +46,32 @@ public class PrestamoServlet extends HttpServlet {
                 registrarPrestamo(request, response);
                 break;
             }
+            case "renovarPrestamo": {
+                renovarPrestamo(request, response);
+                break;
+            }
 
+        }
+    }
+
+    private void renovarPrestamo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            String idPrestamoStr = request.getParameter("idPrestamo");
+            String nuevaFechaStr = request.getParameter("nuevaFecha");
+            if (idPrestamoStr != null && nuevaFechaStr != null && !idPrestamoStr.isEmpty() && !nuevaFechaStr.isEmpty()) {
+                int idPrestamo = Integer.parseInt(idPrestamoStr);
+                Date nuevaFechaDevolucion = Date.valueOf(LocalDate.parse(nuevaFechaStr));
+                if (PrestamoDAO.renovarPrestamo(idPrestamo, nuevaFechaDevolucion)) {
+                    response.sendRedirect("renovarPrestamo.jsp");
+                } else {
+                    session.setAttribute("errorMensaje", "Error:  La renovación no fue exitosa");
+                }
+            } else {
+                session.setAttribute("errorMensaje", "Error:  Parámetros inválidos o faltantes");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void registrarPrestamo (HttpServletRequest request, HttpServletResponse response)
