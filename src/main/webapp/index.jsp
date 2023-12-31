@@ -43,14 +43,6 @@
             <button class="btn" onclick="window.location.href='realizarDevolucion.jsp'" name="action" value="realizarDevolucion">Registrar</button>
         </form>
     </div>
-
-    <div class="section">
-        <form action="prestamo" method="get">
-            <h2>Renovar un préstamo</h2>
-            <p class="description">En esta sección se puede realizar la renovación de una fecha de devolucion de un libro.</p>
-            <button class="btn" onclick="window.location.href='renovarPrestamo.jsp'" name="action" value="renovarPrestamo">Renovar</button>
-        </form>
-    </div>
 </div>
 
 </body>

@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 
 import java.sql.Date;
 import java.util.List;
-import java.time.LocalDate;
+
 public class PrestamoDAO {
 
     private static SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();;
@@ -93,7 +93,7 @@ public class PrestamoDAO {
             }
 
             // Verificar si el libro existe y si está o no está disponible
-            if (!LibroDAO.verificarExistenciaLibro(idlibro) || !LibroDAO.consultarLibro(idlibro).getDisponibilidad()) {
+            if (!LibroDAO.verificarExistenciaLibro(cedula) || !LibroDAO.consultarLibro(idlibro).getDisponibilidad()) {
                 return false;
             }
 
@@ -124,35 +124,5 @@ public class PrestamoDAO {
         }catch (Exception e) {
             return null;
         }
-    }
-
-    public static void actualizarMultas() {
-        try (Session sessionSave = sessionFactory.openSession()) {
-            sessionSave.beginTransaction();
-
-            List<ClasePrestamo> listaPrestamos = sessionSave.createQuery("FROM ClasePrestamo", ClasePrestamo.class).getResultList();
-
-            LocalDate fechaActual = LocalDate.now();  // Obtener la fecha actual
-
-            for (ClasePrestamo prestamo : listaPrestamos) {
-                LocalDate fechaDevolucion = prestamo.getFechaDevolucion().toLocalDate();
-
-                // Comparar las fechas y asegurarse de que la multa no se establezca si son iguales
-                if (compararFechas(fechaDevolucion, fechaActual) < 0 && !prestamo.getMulta()) {
-                    prestamo.setMulta(true);
-                    sessionSave.update(prestamo);
-                } else if (compararFechas(fechaDevolucion, fechaActual) <= 0 && prestamo.getMulta()) {
-                    prestamo.setMulta(false);  // Establecer la multa en false si son iguales
-                    sessionSave.update(prestamo);
-                }
-            }
-            sessionSave.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int compararFechas(LocalDate fecha1, LocalDate fecha2){
-        return fecha1.compareTo(fecha2);
     }
 }

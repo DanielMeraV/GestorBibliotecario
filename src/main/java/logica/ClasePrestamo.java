@@ -1,5 +1,6 @@
 package logica;
 
+import dao.EstudianteDAO;
 import jakarta.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -92,49 +93,6 @@ public class ClasePrestamo {
         this.multa = multa;
     }
 
-<<<<<<< Updated upstream
-    public static boolean solicitarPrestamo(String cedula, String idlibro){
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-        Session session = null;
-        Transaction transaction = null;
-
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-
-            // Verificar si el estudiante existe
-            ClaseEstudiante estudiante = ClaseEstudiante.getEstudiante(cedula, session);
-
-            if (estudiante == null) {
-                // El estudiante no existe
-                return false;
-            }
-
-            // Verificar si el libro existe
-            ClaseLibro libro = ClaseLibro.getLibro(idlibro, session);
-
-            if (libro == null || libro.getDisponibilidad() == false) {
-                // El libro no existe o no está disponible
-                return false;
-            }
-
-            transaction.commit();
-
-            // Ambos existen, el préstamo es válido
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-=======
-
-
     public static int compararFechas(Date fecha1, Date fecha2){
         if(fecha1.equals(fecha2)){
             return 0;
@@ -142,40 +100,7 @@ public class ClasePrestamo {
             return 1;
         }else if(fecha1.before(fecha2)){
             return -1;
->>>>>>> Stashed changes
         }
+        return 0;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
