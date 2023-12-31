@@ -93,67 +93,13 @@ public class ClasePrestamo {
         this.multa = multa;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     public static int compararFechas(Date fecha1, Date fecha2){
         if(fecha1.equals(fecha2)){
             return 0;
         }else if(fecha1.after(fecha2)){
             return 1;
-        }else if(fecha1.before(fecha2)){
+        }else if(fecha1.before(fecha2)) {
             return -1;
-=======
-=======
->>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
-=======
->>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
-    public static boolean solicitarPrestamo(String cedula, String idlibro){
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-        Session session = null;
-        Transaction transaction = null;
-
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-
-            // Verificar si el estudiante existe
-            ClaseEstudiante estudiante = ClaseEstudiante.getEstudiante(cedula, session);
-
-            if (estudiante == null) {
-                // El estudiante no existe
-                return false;
-            }
-
-            // Verificar si el libro existe
-            ClaseLibro libro = ClaseLibro.getLibro(idlibro, session);
-
-            if (libro == null || libro.getDisponibilidad() == false) {
-                // El libro no existe o no está disponible
-                return false;
-            }
-
-            transaction.commit();
-
-            // Ambos existen, el préstamo es válido
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
-=======
->>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
-=======
->>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
         }
         return 0;
     }
