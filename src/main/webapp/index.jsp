@@ -56,6 +56,9 @@
             <button class="btn" onclick="window.location.href='solicitarPrestamo.jsp'">Solicitar</button>
         </form>
     </div>
+<<<<<<< HEAD
+>>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
+=======
 >>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
 </div>
 
