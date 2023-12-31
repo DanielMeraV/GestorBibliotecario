@@ -28,6 +28,7 @@
         <button class="btn" onclick="window.location.href='eliminarLibro.jsp'">Eliminar</button>
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     <div class="section">
         <form action="prestamo" method="get">
@@ -45,6 +46,16 @@
         </form>
     </div>
 =======
+>>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
+=======
+
+    <div class="section">
+        <form action="solicitarPrestamo" method="get">
+            <h2>Solicitud de Préstamo</h2>
+            <p class="description">En esta sección se puede realizar un nuevo prestamo de un libro por estudiante.</p>
+            <button class="btn" onclick="window.location.href='solicitarPrestamo.jsp'">Solicitar</button>
+        </form>
+    </div>
 >>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
 </div>
 

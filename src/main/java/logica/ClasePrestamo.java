@@ -94,6 +94,7 @@ public class ClasePrestamo {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static int compararFechas(Date fecha1, Date fecha2){
         if(fecha1.equals(fecha2)){
             return 0;
@@ -102,6 +103,8 @@ public class ClasePrestamo {
         }else if(fecha1.before(fecha2)){
             return -1;
 =======
+=======
+>>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
     public static boolean solicitarPrestamo(String cedula, String idlibro){
         sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         Session session = null;
@@ -141,6 +144,9 @@ public class ClasePrestamo {
             if (session != null) {
                 session.close();
             }
+<<<<<<< HEAD
+>>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
+=======
 >>>>>>> parent of 7070510 (feat: creación interfaz de renovar y asignación de  multas)
         }
         return 0;
