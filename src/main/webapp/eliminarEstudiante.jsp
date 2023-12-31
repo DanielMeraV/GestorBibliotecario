@@ -6,7 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/registrarEstudiante.css">
-    <title>Registro de Estudiante</title>
+    <title>Eliminar Estudiante</title>
+    <script>
+        function validarNumero(input) {
+            var regex = /[^0-9]/g;
+            input.value = input.value.replace(regex, '');
+            if (input.value.length === 0) {
+                document.getElementById('mensaje').innerHTML = "Ingresa al menos un número.";
+            } else {
+                document.getElementById('mensaje').innerHTML = "";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -17,7 +28,7 @@
 
     <form action="estudiante" method="post">
         <label for="cedula">Cédula:</label>
-        <input type="text" id="cedula" name="cedula">
+        <input type="text" id="cedula" name="cedula" oninput="validarNumero(this)" maxlength="10" required>
 
         <div class="botones">
             <button type="submit" name="action" value="eliminarEstudiante">Aceptar</button>
@@ -35,5 +46,3 @@
 
 </body>
 </html>
-
-

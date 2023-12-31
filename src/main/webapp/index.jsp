@@ -32,7 +32,7 @@
         <form action="prestamo" method="get">
             <h2>Solicitud de Préstamo</h2>
             <p class="description">En esta sección se puede realizar un nuevo prestamo de un libro por estudiante.</p>
-            <button class="btn" onclick="window.location.href='solicitarPrestamo.jsp'" name="action" value="solicitarPrestamo">Solicitar</button>
+            <button class="btn" onclick="window.location.href='registrarPrestamo.jsp'" name="action" value="registrarPrestamo">Solicitar</button>
         </form>
     </div>
 
@@ -47,4 +47,3 @@
 
 </body>
 </html>
-

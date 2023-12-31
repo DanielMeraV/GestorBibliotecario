@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity
 @Table(name = "estudiante", schema = "gestorbibliotecario")
@@ -89,16 +91,31 @@ public class ClaseEstudiante {
         this.correoElectronico = correoElectronico;
     }
 
+    public static boolean validarDatosRegistro(ClaseEstudiante estudiante) {
+        String cedula = estudiante.getCedula();
+        String nombre = estudiante.getNombre();
+        String telefono = estudiante.getTelefono();
+        String codigo = estudiante.getCodigoUnico();
+        String direccion = estudiante.getDireccion();
+        String correo = estudiante.getCorreoElectronico();
 
-    public static ClaseEstudiante getEstudiante(String cedula, Session session) {
-        try {
-            Query<ClaseEstudiante> estudianteQuery = session.createQuery ("FROM ClaseEstudiante WHERE cedula = :cedula", ClaseEstudiante.class);
-            estudianteQuery.setParameter("cedula", cedula);
-            ClaseEstudiante estudiante = estudianteQuery.uniqueResult();
-            return estudiante;
-        } catch (Exception e) {
-            return null;
+        if (cedula == "" || nombre == "" || telefono == "" || codigo =="" || direccion == "" || correo == "")  {
+            return false;
         }
+        else if (cedula == null || nombre == null || telefono == null || codigo ==null || direccion == null || correo == null)  {
+            return false;
+        }
+        else if (!nombre.equals("")) {
+            String regex = "^[a-zA-Z ]+$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(nombre);
+            if (matcher.matches() == false)
+                return false;
+        }
+        else if (cedula.length() != 10 || telefono.length() != 10 || codigo.length() != 9) {
+            return false;
+        }
+        return true;
     }
 
     @Override

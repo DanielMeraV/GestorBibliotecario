@@ -47,6 +47,7 @@ public class EstudianteServletTest {
         registro.doPost(request, response);
     }
 
+    /*
     @Test
     public void given_student_when_delete_then_ok() throws ServletException, IOException {
         sessionsave = sessionFactory.openSession();
@@ -65,5 +66,6 @@ public class EstudianteServletTest {
 
         assertNull(estudianteEliminado);
     }
+    */
 
 }

@@ -1,22 +1,18 @@
 package controladores;
 
 import java.io.*;
+import dao.EstudianteDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import logica.Administrador;
 import logica.ClaseEstudiante;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 @WebServlet(name = "EstudianteServlet", urlPatterns = {"/estudiante"})
 public class EstudianteServlet extends HttpServlet {
-    private SessionFactory sessionFactory;
 
     @Override
     public void init() {
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
     }
 
     @Override
@@ -24,77 +20,63 @@ public class EstudianteServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action) {
-            case "registroEstudiante": {
-                String cedula = request.getParameter("cedula");
-                String nombre = request.getParameter("nombre");
-                String direccion = request.getParameter("direccion");
-                String telefono = request.getParameter("telefono");
-                String codigo = request.getParameter("codigo");
-                String correo = request.getParameter("correo");
-                HttpSession session = request.getSession();
-
-                // Crear un nuevo objeto ClaseEstudiante
-                ClaseEstudiante estudiante = new ClaseEstudiante(cedula, nombre, direccion, telefono, codigo, correo);
-                if(!Administrador.validarDatosRegistro(estudiante)){
-                    estudiante = null;
-                }
-
-                if (estudiante != null){
-                    session.setAttribute("errorMensaje", null);
-                    session.setAttribute("estudianteRegistrado", estudiante);
-                    // Guardar el estudiante utilizando Hibernate
-                    try (Session sessionSave = sessionFactory.openSession()) {
-                        sessionSave.beginTransaction();
-                        sessionSave.save(estudiante); // Guardar el estudiante en la base de datos
-                        sessionSave.getTransaction().commit();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        // Manejar el error, por ejemplo, redirigir a una página de error
-                        response.sendRedirect("error.jsp");
-                        return;
-                    }
-                    // Redireccionar a una página de éxito después de guardar en la base de datos
-                    response.sendRedirect("index.jsp");
-                }else {
-                    session.setAttribute("errorMensaje", "Error: dato invalido.");
-                    response.sendRedirect("registrarEstudiante.jsp");
-                }
+            case "registrarEstudiante": {
+                registrarEstudiante(request, response);
                 break;
             }
             case "eliminarEstudiante": {
-                String cedula = request.getParameter("cedula");
-                HttpSession session = request.getSession();
-
-                if (cedula != null && cedula != ""){
-                    session.setAttribute("errorMensaje", null);
-                    // Eliminar el estudiante utilizando Hibernate
-                    try (Session sessionSave = sessionFactory.openSession()) {
-                        // Crear un nuevo objeto ClaseEstudiante
-                        ClaseEstudiante estudiante = ClaseEstudiante.getEstudiante(cedula, sessionSave);
-                        sessionSave.beginTransaction();
-                        sessionSave.delete(estudiante);
-                        sessionSave.getTransaction().commit();
-                    } catch (Exception e) {
-                        session.setAttribute("errorMensaje", "Error: no puede eliminar un estudiante con un prestamo pendiente.");
-                        response.sendRedirect("eliminarEstudiante.jsp");
-                        return;
-                    }
-                    // Redireccionar a una página de éxito después de guardar en la base de datos
-                    response.sendRedirect("index.jsp");
-                }else {
-                    session.setAttribute("errorMensaje", "Error: dato invalido.");
-                    response.sendRedirect("eliminarEstudiante.jsp");
-                }
+                eliminarEstudiante(request, response);
                 break;
             }
         }
-
     }
 
-    @Override
-    public void destroy() {
-        if (sessionFactory != null) {
-            sessionFactory.close();
+    public void registrarEstudiante (HttpServletRequest request, HttpServletResponse response)
+    {
+        try {
+            HttpSession session = request.getSession();
+
+            String cedula = request.getParameter("cedula");
+            String nombre = request.getParameter("nombre");
+            String direccion = request.getParameter("direccion");
+            String telefono = request.getParameter("telefono");
+            String codigo = request.getParameter("codigo");
+            String correo = request.getParameter("correo");
+
+            // Crear un nuevo objeto ClaseEstudiante
+            ClaseEstudiante nuevoEstudiante = new ClaseEstudiante(cedula, nombre, direccion, telefono, codigo, correo);
+
+            if(EstudianteDAO.registrarEstudiante(nuevoEstudiante)){
+                session.setAttribute("errorMensaje", null);
+                response.sendRedirect("index.jsp");
+            }else {
+                session.setAttribute("errorMensaje", "Error: No ha sido posible registrar el estudiante.");
+                response.sendRedirect("registrarEstudiante.jsp");
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarEstudiante (HttpServletRequest request, HttpServletResponse response)
+    {
+        try {
+            HttpSession session = request.getSession();
+
+            String cedulaEstudiante = request.getParameter("cedula");
+
+            if(EstudianteDAO.eliminarEstudiante(cedulaEstudiante)){
+                session.setAttribute("errorMensaje", null);
+                response.sendRedirect("index.jsp");
+            }else {
+                session.setAttribute("errorMensaje", "Error: No ha sido posible eliminar el estudiante.");
+                response.sendRedirect("eliminarEstudiante.jsp");
+            }
+
+            response.sendRedirect("index.jsp");
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

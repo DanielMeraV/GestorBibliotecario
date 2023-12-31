@@ -7,38 +7,36 @@ import static org.junit.Assert.*;
 
 public class ClaseEstudianteTest {
     private static ClaseEstudiante estudiante;
-    private static Administrador administrador;
 
     @BeforeClass
     public static void setUp(){
         estudiante = new ClaseEstudiante();
-        administrador = new Administrador();
     }
 
     @Test
     public void given_object_estudiante_when_register_then_true(){
         estudiante = new ClaseEstudiante("1234567890", "Andres", "San Bartolo", "0956321478", "202010586", "andres@gmail.com");
-        assertTrue(administrador.validarDatosRegistro(estudiante));
+        assertTrue(ClaseEstudiante.validarDatosRegistro(estudiante));
     }
 
     @Test
     public void given_blanc_strings_when_register_then_false(){
 
         estudiante = new ClaseEstudiante("1234567890", "", "San Bartolo", "0956321478", "", "andres@gmail.com");
-        assertFalse(administrador.validarDatosRegistro(estudiante));
+        assertFalse(ClaseEstudiante.validarDatosRegistro(estudiante));
     }
 
     @Test(timeout = 10)
     public void given_object_estudiante_when_register_then_timeout(){
 
         estudiante = new ClaseEstudiante("1234567890", "Andres", "San Bartolo", "0956321478", "202010586", "andres@gmail.com");
-        assertTrue(administrador.validarDatosRegistro(estudiante));
+        assertTrue(ClaseEstudiante.validarDatosRegistro(estudiante));
     }
 
     @Test
     public void given_null_when_register_then_false(){
         estudiante = new ClaseEstudiante("1234567890", null, null, "0956321478", "202010586", null);
-        assertFalse(administrador.validarDatosRegistro(estudiante));
+        assertFalse(ClaseEstudiante.validarDatosRegistro(estudiante));
     }
 
     @Test(timeout = 200)
@@ -47,7 +45,7 @@ public class ClaseEstudianteTest {
 
         for (int i = 0; i < numberOfObjects; i++) {
             estudiante = new ClaseEstudiante("1234567890", "Andres", "San Bartolo", "0956321478", "202010586", "andres@gmail.com");
-            assertTrue(administrador.validarDatosRegistro(estudiante));
+            assertTrue(ClaseEstudiante.validarDatosRegistro(estudiante));
         }
     }
 }
