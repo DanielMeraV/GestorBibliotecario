@@ -11,6 +11,7 @@
     <mapping class="logica.ClaseEstudiante"/>
     <mapping class="logica.ClasePrestamo"/>
     <mapping class="logica.ClaseLibro"/>
+    <mapping class="logica.ClaseDevolucion"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

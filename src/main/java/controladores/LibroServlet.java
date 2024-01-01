@@ -1,5 +1,6 @@
 package controladores;
 
+import dao.EstudianteDAO;
 import dao.LibroDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,6 +33,26 @@ public class LibroServlet extends HttpServlet {
                 break;
             }
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        switch (action) {
+            case "listaLibros":{
+                actualizarTablas(request, response);
+                break;
+            }
+        }
+    }
+
+    private void actualizarTablas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+
+        sesion.setAttribute("listaLibros", LibroDAO.listarLibrosDisponibles());
+
+        response.sendRedirect("listaLibros.jsp");
     }
 
     public void registrarLibro (HttpServletRequest request, HttpServletResponse response)

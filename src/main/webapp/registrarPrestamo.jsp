@@ -119,6 +119,7 @@
         <caption>Prestamos</caption>
         <thead>
         <tr>
+            <th>ID Préstamo</th>
             <th>Cédula Estudiante</th>
             <th>ID Libro</th>
             <th>Fecha de Préstamo</th>
@@ -134,6 +135,8 @@
                 multa = prestamo.getMulta() ? "Si" : "No";
         %>
         <tr>
+            <td><%=prestamo.getIdPrestamo()%>
+            </td>
             <td><%=prestamo.getCedula()%>
             </td>
             <td><%=prestamo.getIdLibro()%>

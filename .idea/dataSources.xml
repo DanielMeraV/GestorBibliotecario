@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="gestorbibliotecario@localhost" uuid="559f0824-53f3-470d-9030-5623b0806fc2">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/gestorbibliotecario</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="gestorbibliotecario" uuid="bd1f8710-a134-463f-9eff-4dbc7c739eaa">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>

@@ -30,6 +30,10 @@ public class PrestamoServlet extends HttpServlet {
                 actualizarTablas(request, response);
                 break;
             }
+            case "listaPrestamos":{
+                verListaPrestamo(request, response);
+                break;
+            }
         }
     }
 
@@ -88,5 +92,12 @@ public class PrestamoServlet extends HttpServlet {
         sesion.setAttribute("listaPrestamos", PrestamoDAO.listarPrestamos());
 
         response.sendRedirect("registrarPrestamo.jsp");
+    }
+
+    private void verListaPrestamo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("listaPrestamos", PrestamoDAO.listarPrestamos());
+
+        response.sendRedirect("listaPrestamos.jsp");
     }
 }

@@ -1,10 +1,17 @@
 package controladores;
 
 import java.io.*;
+
+import dao.DevolucionDAO;
+import dao.EstudianteDAO;
+import dao.LibroDAO;
+import dao.PrestamoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import logica.*;
 import org.hibernate.Session;
@@ -16,26 +23,19 @@ public class DevolucionServlet extends HttpServlet {
     private SessionFactory sessionFactory;
 
     @Override
-    public void init() {
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-    }
+    public void init() {}
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        String action = req.getParameter("action");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
 
         switch (action) {
             case "realizarDevolucion": {
-                Session session = sessionFactory.openSession();
-
-                List<ClasePrestamo> listaPrestamo = session.createQuery("FROM ClasePrestamo ", ClasePrestamo.class).getResultList();
-
-                session.close();
-
-                HttpSession sesion = req.getSession();
-                sesion.setAttribute("listaPrestamos", listaPrestamo);
-
-                response.sendRedirect("realizarDevolucion.jsp");
+                actualizarTablas(request, response);
+                break;
+            }
+            case "listaDevolucion":{
+                verListaDevolucion(request, response);
                 break;
             }
         }
@@ -47,16 +47,65 @@ public class DevolucionServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action) {
-            case "":{
-
+            case "realizarDevolucion":{
+                registrarPrestamo(request, response);
+                break;
             }
         }
     }
 
-    @Override
-    public void destroy() {
-        if (sessionFactory != null) {
-            sessionFactory.close();
+    private void actualizarTablas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+
+        sesion.setAttribute("listaPrestamos", PrestamoDAO.listarPrestamos());
+        sesion.setAttribute("listaDevolucion", DevolucionDAO.listarDevolucion());
+
+        response.sendRedirect("realizarDevolucion.jsp");
+    }
+
+    private void verListaDevolucion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+
+        sesion.setAttribute("listaDevolucion", DevolucionDAO.listarDevolucion());
+
+        response.sendRedirect("listaDevolucion.jsp");
+    }
+
+    public void registrarPrestamo (HttpServletRequest request, HttpServletResponse response)
+    {
+        try {
+            HttpSession session = request.getSession();
+
+            int idPrestamo = Integer.parseInt(request.getParameter("idPrestamo"));
+
+            ClasePrestamo prestamo = PrestamoDAO.consultarPrestamo(idPrestamo);
+
+            if (prestamo == null) {
+                session.setAttribute("errorMensaje", "Error: ID de préstamo inválido.");
+                response.sendRedirect("realizarDevolucion.jsp");
+            } else if (prestamo.getMulta() == true) {
+                session.setAttribute("errorMensaje", "Error: No se puede realizar la devolucion de un prestamo con multa.");
+                response.sendRedirect("realizarDevolucion.jsp");
+            } else {
+                session.setAttribute("errorMensaje", null);
+
+                Date fechaDevolucion = Date.valueOf(LocalDate.now());
+
+                // Crear un nuevo objeto ClaseDevolcuion
+                ClaseDevolucion nuevaDevolucion = new ClaseDevolucion(prestamo.getIdPrestamo(), prestamo.getCedula(), fechaDevolucion);
+
+                if(DevolucionDAO.registrarDevolucion(nuevaDevolucion)){
+                    LibroDAO.cambiarDisponibilidadLibro(prestamo.getIdLibro());
+                    PrestamoDAO.eliminarPrestamo(prestamo.getIdPrestamo());
+                    doGet(request, response);
+                }else {
+                    session.setAttribute("errorMensaje", "Error: No ha sido posible registrar el préstamo.");
+                }
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 }

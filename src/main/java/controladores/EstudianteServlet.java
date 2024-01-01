@@ -2,6 +2,8 @@ package controladores;
 
 import java.io.*;
 import dao.EstudianteDAO;
+import dao.LibroDAO;
+import dao.PrestamoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -29,6 +31,26 @@ public class EstudianteServlet extends HttpServlet {
                 break;
             }
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        switch (action) {
+            case "listaEstudiantes":{
+                actualizarTablas(request, response);
+                break;
+            }
+        }
+    }
+
+    private void actualizarTablas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+
+        sesion.setAttribute("listaEstudiantes", EstudianteDAO.listarEstudiantes());
+
+        response.sendRedirect("listaEstudiante.jsp");
     }
 
     public void registrarEstudiante (HttpServletRequest request, HttpServletResponse response)
