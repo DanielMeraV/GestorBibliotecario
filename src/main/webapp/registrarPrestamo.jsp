@@ -22,10 +22,10 @@
             <caption>Estudiantes</caption>
             <thead>
             <tr>
-                <th>Cédula</th>
+                <th>Cedula</th>
                 <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
                 <th>Codigo Unico</th>
                 <th>Correo Electrónico</th>
             </tr>
@@ -68,7 +68,6 @@
             <tbody>
             <%
                 List<ClaseLibro> listaLibros = (List) request.getSession().getAttribute("listaLibros");
-                listaLibros = ClaseLibro.verificarLibrosDisponibles(listaLibros);
                 String disponibilidad;
                 for (ClaseLibro libro : listaLibros) {
                     disponibilidad = libro.getDisponibilidad() ? "Si" : "No";
@@ -97,14 +96,14 @@
     </tr>
 
     <div class="formulario">
-        <form action="solicitarPrestamo" method="post">
+        <form action="prestamo" method="post">
             <label for="cedula">Cédula del estudiante:</label>
             <input type="text" id="cedula" name="cedula" placeholder="Ingrese la cédula aquí">
 
             <label for="idLibro">&nbsp;&nbsp;&nbsp;ID del libro:</label>
             <input type="text" id="idLibro" name="idLibro" placeholder="Ingrese el ID aquí">
 
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="registrarPrestamo">Aceptar</button>
         </form>
     </div>
 
@@ -117,9 +116,10 @@
 
     <table class="loans-table">
         <!-- Tabla de Préstamos -->
-        <caption>Préstamos</caption>
+        <caption>Prestamos</caption>
         <thead>
         <tr>
+            <th>ID Préstamo</th>
             <th>Cédula Estudiante</th>
             <th>ID Libro</th>
             <th>Fecha de Préstamo</th>
@@ -135,6 +135,8 @@
                 multa = prestamo.getMulta() ? "Si" : "No";
         %>
         <tr>
+            <td><%=prestamo.getIdPrestamo()%>
+            </td>
             <td><%=prestamo.getCedula()%>
             </td>
             <td><%=prestamo.getIdLibro()%>

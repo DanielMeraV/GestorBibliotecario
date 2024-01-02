@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import logica.ClaseEstudiante;
 import logica.ClaseLibro;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -14,11 +16,13 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-public class RegistroEstudianteServletTest {
+public class EstudianteServletTest {
 
     private static HttpServletRequest request;
     private static HttpServletResponse response;
     private static HttpSession session;
+    private static Session sessionsave;
+    private static SessionFactory sessionFactory;
 
     @BeforeClass
     public static void setUp(){
@@ -33,13 +37,35 @@ public class RegistroEstudianteServletTest {
         Mockito.when(request.getParameter("codigo")).thenReturn("202010586");
         Mockito.when(request.getParameter("correo")).thenReturn("daniel.mera@epn.edu.ec");
         Mockito.when(request.getSession()).thenReturn(session);
+        Mockito.when(sessionFactory.openSession()).thenReturn(sessionsave);
     }
 
     @Test(timeout = 3000)
     public void given_ostudent_when_register_then_timeout() throws ServletException, IOException {
-        RegistroEstudianteServlet registro = new RegistroEstudianteServlet();
+        EstudianteServlet registro = new EstudianteServlet();
         registro.init();
         registro.doPost(request, response);
     }
+
+    /*
+    @Test
+    public void given_student_when_delete_then_ok() throws ServletException, IOException {
+        sessionsave = sessionFactory.openSession();
+
+        EstudianteServlet registro = new EstudianteServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("registroEstudiante");
+        registro.init();
+        registro.doPost(request, response);
+
+        EstudianteServlet eliminarRegistro = new EstudianteServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("eliminarEstudiante");
+        eliminarRegistro.init();
+        eliminarRegistro.doPost(request, response);
+
+        ClaseEstudiante estudianteEliminado = ClaseEstudiante.getEstudiante("1234567890", sessionsave);
+
+        assertNull(estudianteEliminado);
+    }
+    */
 
 }

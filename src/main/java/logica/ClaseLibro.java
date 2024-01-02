@@ -3,12 +3,8 @@ package logica;
 import jakarta.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -82,54 +78,6 @@ public class ClaseLibro {
         this.disponibilidad = disponibilidad;
     }
 
-    public static List<ClaseLibro> verificarLibrosDisponibles(List<ClaseLibro> listaLibros) {
-        List<ClaseLibro> librosValidos = new ArrayList<>();
-
-        for (ClaseLibro libro : listaLibros) {
-            if (libro.getDisponibilidad()) {
-                librosValidos.add(libro);
-            }
-        }
-        return librosValidos;
-    }
-
-    public static boolean cambiarDisponibilidadLibro(String idlibro){
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-        Session session = null;
-        Transaction transaction = null;
-
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-
-            ClaseLibro libro = getLibro(idlibro, session);
-
-            // Cambiar la disponibilidad
-            String updateQuery = "UPDATE ClaseLibro SET disponibilidad = :nuevaDisponibilidad WHERE idLibro = :idLibro";
-
-            int actualizacion = session.createQuery(updateQuery).setParameter("nuevaDisponibilidad", !libro.getDisponibilidad()).setParameter("idLibro", idlibro).executeUpdate();
-
-            transaction.commit();
-
-            // Verificar si la actualización fue exitosa
-            if (actualizacion > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
-
     public static ClaseLibro getLibro(String idlibro, Session session) {
         try {
             Query<ClaseLibro> libroQuery = session.createQuery ("FROM ClaseLibro WHERE idLibro = :idLibro", ClaseLibro.class);
@@ -141,7 +89,7 @@ public class ClaseLibro {
         }
     }
 
-    public static boolean ingresarLibro(ClaseLibro libro){
+    public static boolean validarDatosLibro(ClaseLibro libro){
         boolean valido = true;
         if (libro.getIdLibro() == null || libro.getTitulo() == null || libro.getAutor() == null || libro.getGenero() == null) {
             valido = false;

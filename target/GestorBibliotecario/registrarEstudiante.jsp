@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/registrarEstudiante.css">
-    <title>Registro de Estudiante</title>
+    <title>Registrar Estudiante</title>
     <script>
         function validarNumero(input) {
             var regex = /[^0-9]/g;
@@ -18,6 +18,7 @@
             }
         }
     </script>
+    <% session.removeAttribute("mensaje"); %>
 </head>
 <body>
 
@@ -26,9 +27,9 @@
     <h1>Registrar Estudiante</h1>
     <p>Ingrese los datos del estudiante:</p>
 
-    <form action="registroEstudiante" method="post"> <!-- El formulario envía datos al servlet 'registroEstudiante' -->
+    <form action="estudiante" method="post"> <!-- El formulario envía datos al servlet 'registroEstudiante' -->
         <label for="cedula">Cédula*:</label>
-        <input type="text" id="cedula" name="cedula" oninput="validarNumero(this)" required>
+        <input type="text" id="cedula" name="cedula" oninput="validarNumero(this)" maxlength="10" required>
 
         <label for="nombre">Nombre*:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -37,16 +38,16 @@
         <input type="text" id="direccion" name="direccion" required>
 
         <label for="telefono">Teléfono*:</label>
-        <input type="text" id="telefono" name="telefono" oninput="validarNumero(this)" required>
+        <input type="text" id="telefono" name="telefono" oninput="validarNumero(this)" maxlength="10" required>
 
         <label for="codigo">Código Único*:</label>
-        <input type="text" id="codigo" name="codigo" oninput="validarNumero(this)" required>
+        <input type="text" id="codigo" name="codigo" oninput="validarNumero(this)" maxlength="9" required>
 
         <label for="correo">Correo Electrónico*:</label>
         <input type="email" id="correo" name="correo" required>
 
         <div class="botones">
-            <button type="submit">Aceptar</button>
+            <button type="submit" name="action" value="registrarEstudiante">Aceptar</button>
             <button type="button" class="cancelar" onclick="window.location.href='index.jsp'">Cancelar</button>
         </div>
     </form>
@@ -61,5 +62,3 @@
 
 </body>
 </html>
-
-

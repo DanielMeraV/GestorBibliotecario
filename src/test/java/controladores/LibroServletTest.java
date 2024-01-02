@@ -4,7 +4,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica.ClaseEstudiante;
 import logica.ClaseLibro;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,7 +15,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-public class EliminarEstudianteServletTest {
+public class LibroServletTest {
 
     private static HttpServletRequest request;
     private static HttpServletResponse response;
@@ -32,31 +31,32 @@ public class EliminarEstudianteServletTest {
         sessionsave = Mockito.mock(Session.class);
         sessionFactory = Mockito.mock(SessionFactory.class);
 
-        Mockito.when(request.getParameter("cedula")).thenReturn("1234567890");
-        Mockito.when(request.getParameter("nombre")).thenReturn("Daniel");
-        Mockito.when(request.getParameter("direccion")).thenReturn("La Florida");
-        Mockito.when(request.getParameter("telefono")).thenReturn("0999384473");
-        Mockito.when(request.getParameter("codigo")).thenReturn("202010586");
-        Mockito.when(request.getParameter("correo")).thenReturn("daniel.mera@epn.edu.ec");
+        Mockito.when(request.getParameter("idLibro")).thenReturn("123");
+        Mockito.when(request.getParameter("titulo")).thenReturn("Libro prueba");
+        Mockito.when(request.getParameter("autor")).thenReturn("Autor prueba");
+        Mockito.when(request.getParameter("genero")).thenReturn("ficcion");
+        Mockito.when(request.getParameter("disponibilidad")).thenReturn("disponible");
         Mockito.when(request.getSession()).thenReturn(session);
         Mockito.when(sessionFactory.openSession()).thenReturn(sessionsave);
     }
 
     @Test
-    public void given_student_when_delete_then_ok() throws ServletException, IOException {
+    public void given_book_when_delete_then_ok() throws ServletException, IOException {
         sessionsave = sessionFactory.openSession();
 
-        RegistroEstudianteServlet registro = new RegistroEstudianteServlet();
+        LibroServlet registro = new LibroServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("registroLibro");
         registro.init();
         registro.doPost(request, response);
 
-        EliminarEstudianteServlet eliminarRegistro = new EliminarEstudianteServlet();
+        LibroServlet eliminarRegistro = new LibroServlet();
+        Mockito.when(request.getParameter("action")).thenReturn("eliminarLibro");
         eliminarRegistro.init();
         eliminarRegistro.doPost(request, response);
 
-        ClaseEstudiante estudianteEliminado = ClaseEstudiante.getEstudiante("1234567890", sessionsave);
+        ClaseLibro libroEliminado = ClaseLibro.getLibro("123", sessionsave);
 
-        assertNull(estudianteEliminado);
+        assertNull(libroEliminado);
     }
 
 }

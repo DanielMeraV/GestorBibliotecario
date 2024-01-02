@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    overflow: auto;
     background-color: #99CCFF;
 }
 
@@ -27,13 +27,28 @@ h1 {
 }
 
 .section {
-    text-align: left;
+    text-align: center;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.section-item{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    background: #E9E9E9;
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section form{
+    text-align: center;
 }
 
 form {
     text-align: left;
-    margin-bottom: 40px;
 }
 
 .description {
@@ -44,6 +59,12 @@ form {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: #CECECE;
+}
+
+.container h2{
+    background: lightsteelblue;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

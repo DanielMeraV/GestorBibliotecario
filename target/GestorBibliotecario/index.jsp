@@ -29,14 +29,21 @@
     </div>
 
     <div class="section">
-        <form action="solicitarPrestamo" method="get">
+        <form action="prestamo" method="get">
             <h2>Solicitud de Préstamo</h2>
             <p class="description">En esta sección se puede realizar un nuevo prestamo de un libro por estudiante.</p>
-            <button class="btn" onclick="window.location.href='solicitarPrestamo.jsp'">Solicitar</button>
+            <button class="btn" onclick="window.location.href='registrarPrestamo.jsp'" name="action" value="registrarPrestamo">Solicitar</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <form action="devolucion" method="get">
+            <h2>Devolución de un libro</h2>
+            <p class="description">En esta sección se puede realizar la devolución de un libro prestado a un estudiante.</p>
+            <button class="btn" onclick="window.location.href='realizarDevolucion.jsp'" name="action" value="realizarDevolucion">Registrar</button>
         </form>
     </div>
 </div>
 
 </body>
 </html>
-
