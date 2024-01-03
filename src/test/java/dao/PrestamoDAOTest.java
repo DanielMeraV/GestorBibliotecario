@@ -25,7 +25,7 @@ public class PrestamoDAOTest {
 
     @Test
     public void given_existingPrestamoID_when_consult_then_true(){
-        if(PrestamoDAO.consultarPrestamo(12) != null){
+        if(PrestamoDAO.consultarPrestamo(20) != null){
             assertTrue(true);
         }else{
             fail();
@@ -34,33 +34,33 @@ public class PrestamoDAOTest {
 
     @Test
     public void given_object_prestamo_when_delete_then_true(){
-        assertTrue(PrestamoDAO.eliminarPrestamo(11));
+        assertTrue(PrestamoDAO.eliminarPrestamo(101));
     }
 
     @Test
     public void given_nonExistingPrestamo_when_delete_then_false() {
-        assertFalse(PrestamoDAO.eliminarPrestamo(100));
+        assertFalse(PrestamoDAO.eliminarPrestamo(999));
     }
 
 
     @Test
     public void given_existentPrestamo_when_renew_then_true() {
-        assertTrue(PrestamoDAO.renovarPrestamo(12, Date.valueOf(LocalDate.now().plusDays(100))));
+        assertTrue(PrestamoDAO.renovarPrestamo(23, Date.valueOf(LocalDate.now().plusDays(102))));
     }
 
     @Test
     public void given_expiredPrestamo_when_renew_then_false() {
-        assertFalse(PrestamoDAO.renovarPrestamo(12, Date.valueOf(LocalDate.now().plusDays(100))));
+        assertFalse(PrestamoDAO.renovarPrestamo(20, Date.valueOf(LocalDate.now().plusDays(100))));
     }
 
     @Test
     public void given_existentPrestamo_when_renew_with_invalidDate_then_false(){
-        assertFalse(PrestamoDAO.renovarPrestamo(12, Date.valueOf(LocalDate.now().minusDays(100))));
+        assertFalse(PrestamoDAO.renovarPrestamo(21, Date.valueOf(LocalDate.now().minusDays(100))));
     }
 
     @Test
     public void given_nonExistentPrestamo_when_renew_then_false() {
-        assertFalse(PrestamoDAO.renovarPrestamo(100, Date.valueOf(LocalDate.now().plusDays(15))));
+        assertFalse(PrestamoDAO.renovarPrestamo(999, Date.valueOf(LocalDate.now().plusDays(15))));
     }
 
 }
