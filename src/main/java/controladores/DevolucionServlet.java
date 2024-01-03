@@ -3,7 +3,6 @@ package controladores;
 import java.io.*;
 
 import dao.DevolucionDAO;
-import dao.EstudianteDAO;
 import dao.LibroDAO;
 import dao.PrestamoDAO;
 import jakarta.servlet.*;
@@ -12,11 +11,9 @@ import jakarta.servlet.annotation.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
+
 import logica.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 @WebServlet(name = "DevolucionServlet", urlPatterns = {"/devolucion"})
 public class DevolucionServlet extends HttpServlet {
@@ -48,7 +45,7 @@ public class DevolucionServlet extends HttpServlet {
 
         switch (action) {
             case "realizarDevolucion":{
-                registrarPrestamo(request, response);
+                registrarDevolucion(request, response);
                 break;
             }
         }
@@ -71,7 +68,7 @@ public class DevolucionServlet extends HttpServlet {
         response.sendRedirect("listaDevolucion.jsp");
     }
 
-    public void registrarPrestamo (HttpServletRequest request, HttpServletResponse response)
+    public void registrarDevolucion(HttpServletRequest request, HttpServletResponse response)
     {
         try {
             HttpSession session = request.getSession();
