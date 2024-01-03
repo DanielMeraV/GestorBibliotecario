@@ -78,31 +78,6 @@ public class ClaseLibro {
         this.disponibilidad = disponibilidad;
     }
 
-    public static ClaseLibro getLibro(String idlibro, Session session) {
-        try {
-            Query<ClaseLibro> libroQuery = session.createQuery ("FROM ClaseLibro WHERE idLibro = :idLibro", ClaseLibro.class);
-            libroQuery.setParameter("idLibro", idlibro);
-            ClaseLibro libro = libroQuery.uniqueResult();
-            return libro;
-        }catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static boolean validarDatosLibro(ClaseLibro libro){
-        boolean valido = true;
-        if (libro.getIdLibro() == null || libro.getTitulo() == null || libro.getAutor() == null || libro.getGenero() == null) {
-            valido = false;
-        } else if(libro.getIdLibro().length() != 3){
-            valido = false;
-        } else if (!(libro.getDisponibilidad() == true || libro.getDisponibilidad() == false)) {
-            valido = false;
-        } else if (!libro.getIdLibro().matches("\\d+")) {
-            valido = false;
-        }
-        return valido;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(idLibro, titulo, autor, genero, disponibilidad);

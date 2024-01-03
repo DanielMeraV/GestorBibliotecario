@@ -91,33 +91,6 @@ public class ClaseEstudiante {
         this.correoElectronico = correoElectronico;
     }
 
-    public static boolean validarDatosRegistro(ClaseEstudiante estudiante) {
-        String cedula = estudiante.getCedula();
-        String nombre = estudiante.getNombre();
-        String telefono = estudiante.getTelefono();
-        String codigo = estudiante.getCodigoUnico();
-        String direccion = estudiante.getDireccion();
-        String correo = estudiante.getCorreoElectronico();
-
-        if (cedula == "" || nombre == "" || telefono == "" || codigo =="" || direccion == "" || correo == "")  {
-            return false;
-        }
-        else if (cedula == null || nombre == null || telefono == null || codigo ==null || direccion == null || correo == null)  {
-            return false;
-        }
-        else if (!nombre.equals("")) {
-            String regex = "^[a-zA-Z ]+$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(nombre);
-            if (matcher.matches() == false)
-                return false;
-        }
-        else if (cedula.length() != 10 || telefono.length() != 10 || codigo.length() != 9) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(cedula, nombre, direccion, telefono, codigoUnico, correoElectronico);

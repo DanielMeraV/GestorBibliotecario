@@ -50,7 +50,7 @@ public class LibroServlet extends HttpServlet {
     private void actualizarTablas(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession sesion = request.getSession();
 
-        sesion.setAttribute("listaLibros", LibroDAO.listarLibrosDisponibles());
+        sesion.setAttribute("listaLibros", LibroDAO.listarLibros());
 
         response.sendRedirect("listaLibros.jsp");
     }
