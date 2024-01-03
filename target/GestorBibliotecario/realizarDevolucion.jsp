@@ -21,6 +21,7 @@
             <caption>Prestamos</caption>
             <thead>
             <tr>
+                <th>ID Préstamo</th>
                 <th>Cédula Estudiante</th>
                 <th>ID Libro</th>
                 <th>Fecha de Préstamo</th>
@@ -36,6 +37,8 @@
                     multa = prestamo.getMulta() ? "Si" : "No";
             %>
             <tr>
+                <td><%=prestamo.getIdPrestamo()%>
+                </td>
                 <td><%=prestamo.getCedula()%>
                 </td>
                 <td><%=prestamo.getIdLibro()%>
@@ -87,24 +90,20 @@
         </thead>
         <tbody>
         <%
-            //List<ClaseEstudiante> listaEstudiantes = (List) request.getSession().getAttribute("listaEstudiantes");
-            //for (ClaseEstudiante estudiante : listaEstudiantes) {
+            List<ClaseDevolucion> listaDevolucion = (List) request.getSession().getAttribute("listaDevolucion");
+            for (ClaseDevolucion devolucion : listaDevolucion) {
         %>
         <tr>
-            <td><%//=estudiante.getCedula()%>
+            <td><%=devolucion.getIdDevolucion()%>
             </td>
-            <td><%//=estudiante.getNombre()%>
+            <td><%=devolucion.getIdPrestamo()%>
             </td>
-            <td><%//=estudiante.getDireccion()%>
+            <td><%=devolucion.getCedulaEstudiante()%>
             </td>
-            <td><%//=estudiante.getTelefono()%>
-            </td>
-            <td><%//=estudiante.getCodigoUnico()%>
-            </td>
-            <td><%//=estudiante.getCorreoElectronico()%>
+            <td><%=devolucion.getFechaDevolucion()%>
             </td>
         </tr>
-        <%// }%>
+        <% }%>
         </tbody>
     </table>
 

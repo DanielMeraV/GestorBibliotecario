@@ -18,11 +18,12 @@ public class PrestamoServlet extends HttpServlet {
 
     @Override
     public void init() {
-
+        PrestamoDAO.actualizarMultas();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        init();
         String action = request.getParameter("action");
 
         switch (action) {
@@ -34,11 +35,16 @@ public class PrestamoServlet extends HttpServlet {
                 verListaPrestamo(request, response);
                 break;
             }
+            case "renovarPrestamos":{
+                verRenovacionPrestamo(request, response);
+                break;
+            }
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        init();
         String action = request.getParameter("action");
 
         switch (action) {
@@ -46,9 +52,14 @@ public class PrestamoServlet extends HttpServlet {
                 registrarPrestamo(request, response);
                 break;
             }
+            case "renovarPrestamo": {
+                renovarPrestamo(request, response);
+                break;
+            }
 
         }
     }
+
     public void registrarPrestamo (HttpServletRequest request, HttpServletResponse response)
     {
         try {
@@ -99,5 +110,20 @@ public class PrestamoServlet extends HttpServlet {
         sesion.setAttribute("listaPrestamos", PrestamoDAO.listarPrestamos());
 
         response.sendRedirect("listaPrestamos.jsp");
+    }
+
+    private void renovarPrestamo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+        int idPrestamo = Integer.parseInt(request.getParameter("idPrestamo"));
+        Date fecha = Date.valueOf(request.getParameter("nuevaFecha"));
+        PrestamoDAO.renovarPrestamo(idPrestamo, fecha);
+        response.sendRedirect("index.jsp");
+    }
+
+    private void verRenovacionPrestamo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("listaPrestamos", PrestamoDAO.listarPrestamos());
+
+        response.sendRedirect("renovarPrestamo.jsp");
     }
 }

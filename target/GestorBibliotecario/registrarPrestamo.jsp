@@ -22,10 +22,10 @@
             <caption>Estudiantes</caption>
             <thead>
             <tr>
-                <th>Cédula</th>
+                <th>Cedula</th>
                 <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
                 <th>Codigo Unico</th>
                 <th>Correo Electrónico</th>
             </tr>
@@ -116,9 +116,10 @@
 
     <table class="loans-table">
         <!-- Tabla de Préstamos -->
-        <caption>Préstamos</caption>
+        <caption>Prestamos</caption>
         <thead>
         <tr>
+            <th>ID Préstamo</th>
             <th>Cédula Estudiante</th>
             <th>ID Libro</th>
             <th>Fecha de Préstamo</th>
@@ -134,6 +135,8 @@
                 multa = prestamo.getMulta() ? "Si" : "No";
         %>
         <tr>
+            <td><%=prestamo.getIdPrestamo()%>
+            </td>
             <td><%=prestamo.getCedula()%>
             </td>
             <td><%=prestamo.getIdLibro()%>
