@@ -143,9 +143,6 @@ public class PrestamoDAO {
                 if (compararFechas(fechaDevolucion, fechaActual) < 0 && !prestamo.getMulta()) {
                     prestamo.setMulta(true);
                     sessionSave.update(prestamo);
-                } else if (compararFechas(fechaDevolucion, fechaActual) <= 0 && prestamo.getMulta()) {
-                    prestamo.setMulta(false);  // Establecer la multa en false si son iguales
-                    sessionSave.update(prestamo);
                 }
             }
             sessionSave.getTransaction().commit();
