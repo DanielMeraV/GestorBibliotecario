@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #99CCFF;
+}
+
+h1 {
+    text-align: center;
+}
+
+#formulario {
+    width: 50%;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 15px 30px; /* Ajusta el padding para hacer los botones más grandes */
+    font-size: 16px;    /* Ajusta el tamaño del texto para hacer los botones más grandes */
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+button.cancelar {
+    background-color: #f44336;
+}
+
+
