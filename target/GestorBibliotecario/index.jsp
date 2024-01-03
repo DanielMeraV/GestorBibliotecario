@@ -59,6 +59,12 @@
         </div>
         <div class="section-item">
             <form action="prestamo" method="get">
+                <p class="description">En esta sección se puede renovar el prestamo de un libro.</p>
+                <button class="btn" onclick="window.location.href='renovarPrestamo.jsp'" name="action" value="renovarPrestamos">Renovar</button>
+            </form>
+        </div>
+        <div class="section-item">
+            <form action="prestamo" method="get">
                 <p class="description">En esta sección se puede ver la lista de los préstamos realizados.</p>
                 <button class="btn" onclick="window.location.href='listaPrestamos.jsp'" name="action" value="listaPrestamos">Ver Lista</button>
             </form>

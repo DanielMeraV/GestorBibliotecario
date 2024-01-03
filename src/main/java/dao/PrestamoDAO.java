@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class PrestamoDAO {
@@ -46,6 +47,7 @@ public class PrestamoDAO {
             return false;
         }
     }
+
 
     public static boolean renovarPrestamo(int idPrestamo, Date nuevaFechaDevolucion) {
         try (Session sessionSave = sessionFactory.openSession()) {
@@ -124,5 +126,33 @@ public class PrestamoDAO {
         }catch (Exception e) {
             return null;
         }
+    }
+
+    public static void actualizarMultas() {
+        try (Session sessionSave = sessionFactory.openSession()) {
+            sessionSave.beginTransaction();
+
+            List<ClasePrestamo> listaPrestamos = sessionSave.createQuery("FROM ClasePrestamo", ClasePrestamo.class).getResultList();
+
+            LocalDate fechaActual = LocalDate.now();  // Obtener la fecha actual
+
+            for (ClasePrestamo prestamo : listaPrestamos) {
+                LocalDate fechaDevolucion = prestamo.getFechaDevolucion().toLocalDate();
+
+                // Comparar las fechas y asegurarse de que la multa no se establezca si son iguales
+                if (compararFechas(fechaDevolucion, fechaActual) < 0 && !prestamo.getMulta()) {
+                    prestamo.setMulta(true);
+                    sessionSave.update(prestamo);
+                }
+            }
+            sessionSave.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int compararFechas(LocalDate fecha1, LocalDate fecha2){
+
+        return fecha1.compareTo(fecha2);
     }
 }
